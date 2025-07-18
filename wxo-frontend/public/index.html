@@ -24,11 +24,33 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+      <script>
+                window.wxOConfiguration = {
+                    orchestrationID: "20250606-0930-0376-6056-4e7376f1ae7b_20250606-1001-3583-008e-cbf8fc63ad50",
+                    hostURL: "https://dl.watson-orchestrate.ibm.com",
+                    rootElementID: "watsonx-chat",
+                    showLauncher: true,
+                    chatOptions: {
+            agentId: "832c80ca-e7c1-4f52-82af-ece5f7d095aa",
+            agentEnvironmentId: "2efa6be9-2429-4d2c-baff-85d74ff22eb8"
+        }
+                };
+
+                setTimeout(function () {
+                    const script = document.createElement('script');
+                    script.src = `${window.wxOConfiguration.hostURL}/wxochat/wxoLoader.js?embed=true`;
+                    script.addEventListener('load', function () {
+                        wxoLoader.init();
+                    });
+                    document.head.appendChild(script);
+                }, 0);
+            </script>
+    <title>IBM watsonx</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    <div id="watsonx-chat"></div> <!-- ✅ Watson Chat Mounts Here -->
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
