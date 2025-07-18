@@ -2,7 +2,7 @@
 
 ## Install ReactJS
 
-### Skip this step if you already have ReactJS environment from
+* Skip this step if you already have ReactJS environment from
 
 1. Install latest version of Node.js and npm from: https://nodejs.org/
 2. Verify installation by running this command from terminal
