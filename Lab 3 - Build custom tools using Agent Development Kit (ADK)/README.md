@@ -1,8 +1,8 @@
 # Build custom tools using Agent Development Kit (ADK)
 
-## Leverage watsonx.ai to extract information from image
+## Install ADK
 
-## Build visual expert agent
+## Build flow builder
 
 ## Deploy ADK
 
