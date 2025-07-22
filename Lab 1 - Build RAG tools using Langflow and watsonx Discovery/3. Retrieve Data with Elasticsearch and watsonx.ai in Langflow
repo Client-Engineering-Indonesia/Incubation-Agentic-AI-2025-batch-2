@@ -1,0 +1,191 @@
+# Retrieve Data with Elasticsearch and watsonx.ai in Langflow
+
+### 6. Customize *🐕 Retriever Flow* with watsonx.ai and ElasticSearch
+1. Copy and paste your existing **"watsonx.ai Embedding"** component to this flow. This will paste your existing component details so you wont have to fill it out again
+- Delete the default **OpenAI Embedding** component.
+2. Copy and paste your existing **"watsonx.ai Embedding"** component to this flow. This will paste your existing component details so you wont have to fill it out again
+- Delete the existing **AstraDB** component.
+3. Add **"watsonx.ai"** component.
+- Delete the default **OpenAI** component.
+
+<img width="1143" height="375" alt="Screenshot 2025-07-18 at 13 43 30 copy" src="https://github.com/user-attachments/assets/dfeed450-ddce-4361-be64-caaf5f33bbaa" />
+
+### 7. Fill Component Details
+#### 1. Parser
+#### 🛠️ Modify the Code:
+
+- Click on the **Parser** component.
+- Click the **Code** button.
+- **Copy and paste the code** provided below into the code editor.
+```
+from langflow.custom.custom_component.component import Component
+from langflow.helpers.data import safe_convert
+from langflow.inputs.inputs import BoolInput, HandleInput, MessageTextInput, MultilineInput, TabInput
+from langflow.schema.data import Data
+from langflow.schema.dataframe import DataFrame
+from langflow.schema.message import Message
+from langflow.template.field.base import Output
+
+
+class ParserComponent(Component):
+    display_name = "Parser"
+    description = "Extracts text using a template."
+    documentation: str = "https://docs.langflow.org/components-processing#parser"
+    icon = "braces"
+
+    inputs = [
+        HandleInput(
+            name="input_data",
+            display_name="Data, DataFrame, or List[Data]",
+            input_types=["DataFrame", "Data"],
+            info="Accepts a DataFrame, a Data object, or a list of Data objects.",
+            required=True,
+        ),
+        TabInput(
+            name="mode",
+            display_name="Mode",
+            options=["Parser", "Stringify"],
+            value="Parser",
+            info="Use template formatting or stringify raw content.",
+            real_time_refresh=True,
+        ),
+        MultilineInput(
+            name="pattern",
+            display_name="Template",
+            info=(
+                "Use variables within curly brackets to extract values. "
+                "Example: `Text: {text}`"
+            ),
+            value="Text: {text}",
+            dynamic=True,
+            show=True,
+            required=True,
+        ),
+        MessageTextInput(
+            name="sep",
+            display_name="Separator",
+            advanced=True,
+            value="\n",
+            info="String used to separate rows/items.",
+        ),
+    ]
+
+    outputs = [
+        Output(
+            display_name="Parsed Text",
+            name="parsed_text",
+            info="Formatted text output.",
+            method="parse_combined_text",
+            output_type="Message",  # ✅ untuk prompt
+        ),
+    ]
+
+    def update_build_config(self, build_config, field_value, field_name=None):
+        if field_name == "mode":
+            build_config["pattern"]["show"] = self.mode == "Parser"
+            build_config["pattern"]["required"] = self.mode == "Parser"
+            if field_value:
+                clean_data = BoolInput(
+                    name="clean_data",
+                    display_name="Clean Data",
+                    info="Remove empty rows and clean each cell of the input.",
+                    value=True,
+                    advanced=True,
+                    required=False,
+                )
+                build_config["clean_data"] = clean_data.to_dict()
+            else:
+                build_config.pop("clean_data", None)
+
+        return build_config
+
+    def _clean_args(self):
+        input_data = self.input_data
+
+        # ✅ NEW: If list of Data objects, combine them into one Data
+        if isinstance(input_data, list) and all(isinstance(item, Data) for item in input_data):
+            combined_texts = self.sep.join([item.data.get("text", "") for item in input_data])
+            return None, Data(data={"text": combined_texts})
+
+        match input_data:
+            case DataFrame():
+                return input_data, None
+            case Data():
+                return None, input_data
+            case dict() if "data" in input_data:
+                try:
+                    if "columns" in input_data:
+                        return DataFrame.from_dict(input_data), None
+                    return None, Data(**input_data)
+                except (TypeError, ValueError, KeyError) as e:
+                    raise ValueError(f"Invalid structured input provided: {e!s}") from e
+            case _:
+                raise ValueError(f"Unsupported input type: {type(input_data)}. Expected DataFrame, Data, or list[Data].")
+
+    def parse_combined_text(self) -> Message:
+        if self.mode == "Stringify":
+            return self.convert_to_string()
+
+        df, data = self._clean_args()
+
+        lines = []
+        if df is not None:
+            for _, row in df.iterrows():
+                formatted_text = self.pattern.format(**row.to_dict())
+                lines.append(formatted_text)
+        elif data is not None:
+            formatted_text = self.pattern.format(**data.data)
+            lines.append(formatted_text)
+
+        combined_text = self.sep.join(lines)
+        self.status = combined_text
+        return Message(text=combined_text)
+
+    def convert_to_string(self) -> Message:
+        result = ""
+        if isinstance(self.input_data, list):
+            result = "\n".join([
+                safe_convert(item, clean_data=self.clean_data or False)
+                for item in self.input_data
+            ])
+        else:
+            result = safe_convert(self.input_data or False)
+
+        self.log(f"Converted to string with length: {len(result)}")
+        return Message(text=result)
+```
+> [!NOTE]
+> ### 💻 What does this custom Parser code do?
+>
+> The customized `ParserComponent` improves how your data is prepared before it gets embedded and stored in Elasticsearch.
+>
+> #### ✅ Key Functionalities:
+> - **Transforms structured data (DataFrame or Data)** into clean, individual text chunks.
+
+> #### 🧠 Why is this useful?
+> - When building **Retrieval-Augmented Generation (RAG)** pipelines, you need to **split content into chunks**, so each chunk can be embedded, stored, and retrieved independently.
+
+> In short, this code turns raw data into **search-ready, chunked, and well-formatted units** for your AI pipeline.
+
+#### 2. watsonx.ai
+- Select API Endpoint (same as the watsonx.ai Embedding component)
+- Enter watsonx Project ID  (same as the watsonx.ai Embedding component)
+- Enter API Key  (same as the watsonx.ai Embedding component)
+- Select model name
+<img width="1325" height="728" alt="Screenshot 2025-07-18 at 15 02 32" src="https://github.com/user-attachments/assets/083f93cf-a59a-4513-98e5-34b779132034" />
+
+
+### 8. Run *🐕 Retriever Flow*
+1. Ensure all components are connected: Chat input → Elasticsearch (with watsonx.ai Embedding) → Parser → Prompt → watsonx.ai → Chat output
+   <img width="1032" height="345" alt="Screenshot 2025-07-18 at 15 33 53" src="https://github.com/user-attachments/assets/b0acd56f-e7ae-419b-b932-62bf70e3aa39" />
+
+
+2. On the watsonx.ai component, click the ▶️ button to run the flow
+   <img width="611" height="387" alt="Screenshot 2025-07-18 at 15 34 18" src="https://github.com/user-attachments/assets/ffa600b8-df4d-4ec6-bc57-52074a71a2b0" />
+
+ 
+3. Click the ▶️ Playground button on the top right to view Playground, the chat interface
+   - You can view the chat input & output of the flow
+   - You can type in new questions in the playground
+   <img width="1328" height="677" alt="Screenshot 2025-07-18 at 15 34 49" src="https://github.com/user-attachments/assets/4e6a9943-043a-491c-bbb3-c631a5b56fcb" />
+
