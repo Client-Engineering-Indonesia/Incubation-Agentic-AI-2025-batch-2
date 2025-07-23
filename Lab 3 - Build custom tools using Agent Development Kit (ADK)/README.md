@@ -47,7 +47,7 @@ orchestrate --version
 ## 🤖 Build Multiple Agents
 
 ### Step 1: Download Assets
-📁 Download the provided zip file from the **Lab3 assets** [zip file link]()
+📁 Download the provided zip file from the **Lab3 assets** [zip file link](https://github.com/Client-Engineering-Indonesia/Incubation-Agentic-AI-2025-batch-2/blob/main/Lab%203%20-%20Build%20custom%20tools%20using%20Agent%20Development%20Kit%20(ADK)/assets_lab3/Assets/compliance_planner.zip)
 
 ### Step 2: Add Orchestrate Environments
 
