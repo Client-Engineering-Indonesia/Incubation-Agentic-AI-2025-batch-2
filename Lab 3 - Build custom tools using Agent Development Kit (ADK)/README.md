@@ -226,14 +226,16 @@ sh import-all_3.sh
 ### Step 1: Navigate to Agent Builder
 1. Click the **burger menu** on the top left of the webApp
    
-   ![Burger menu WXO]()
+   ![Burger menu WXO](https://github.com/Client-Engineering-Indonesia/Incubation-Agentic-AI-2025-batch-2/blob/main/Lab%203%20-%20Build%20custom%20tools%20using%20Agent%20Development%20Kit%20(ADK)/assets_lab3/Photos/Burger%20menu%20wxo.png)
 
 2. Click **Agent Builder**
    
-   ![Agent Builder]()
+   ![Agent Builder](https://github.com/Client-Engineering-Indonesia/Incubation-Agentic-AI-2025-batch-2/blob/main/Lab%203%20-%20Build%20custom%20tools%20using%20Agent%20Development%20Kit%20(ADK)/assets_lab3/Photos/Agent%20Builder%20WXO.png)
 
 ### Step 2: Open Your Compliance System
 3. Find and open the `compliance_system_<your_initials>` agent
+
+![Finding agent](https://github.com/Client-Engineering-Indonesia/Incubation-Agentic-AI-2025-batch-2/blob/main/Lab%203%20-%20Build%20custom%20tools%20using%20Agent%20Development%20Kit%20(ADK)/assets_lab3/Photos/finding%20agent.png)
 
 ### Step 3: Test the Agent
 4. 💬 Ask questions in the chat interface:
