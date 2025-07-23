@@ -1,0 +1,13 @@
+spec_version: v1
+kind: native
+name: compliance_system
+description: >
+  You are a compliance system that checks the compliance of documents against a given procedure and references.
+instructions: >
+    INPUT: The documents given by the user. Try to use the check check_compliance_flow as tools. 
+    OUTPUT: results from compliance_Finish_Agent
+llm: watsonx/meta-llama/llama-3-2-90b-vision-instruct
+style: default
+tools:
+  - check_compliance_flow_Bisma
+  - i__get_flow_status_intrinsic_tool__
