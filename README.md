@@ -14,7 +14,7 @@ This workshop aims to introduce Agentic AI into organizational workflows using [
 
 ## 👉 Agenda
 
-<img width="1236" height="690" alt="image" src="https://github.com/user-attachments/assets/f2dde7b4-b15c-49c3-b8a4-69ebdfb72b0d" />
+<img width="1236" height="684" alt="image" src="https://github.com/user-attachments/assets/3a90bed7-4126-4be8-a096-2092507e3494" />
 
 <i>
 Please note that the agenda listed above is for reference only and may not reflect the actual workshop time or duration.
@@ -38,5 +38,7 @@ Now, you've discovered the transformative potential of Agentic AI. It offers a g
 
 Here is the solution overview that you will build:
 
-<img width="1222" height="531" alt="image" src="https://github.com/user-attachments/assets/6cec8543-378c-441e-8c20-25140763b32c" />
+<img width="1081" height="462" alt="image" src="https://github.com/user-attachments/assets/a912a603-9c99-48dd-9d7b-908b58b8fcc5" />
+
+
 
