@@ -1,5 +1,34 @@
 # 🚀 Build Custom Tools using Agent Development Kit (ADK)
+## 📊 Agent Overview
 
+### 🛡️ Compliance Agent
+The **Compliance Agent** helps check whether user-submitted documents meet the company's terms and conditions.
+
+**Key Benefits:**
+- Supports legal and procurement teams
+- Simplifies review of import-related documents
+- Reduces time-consuming and complex manual reviews
+- Speeds up reviews and reduces errors
+- Improves overall efficiency
+
+### 📋 Compliance Planner Agent
+The **Compliance Planner Agent** creates step-by-step plans or checklists based on company policies and compliance guidelines.
+
+**Purpose:**
+- Ensures every required compliance step is accounted for
+- Provides structured approach before document evaluation
+- Maintains consistency across compliance processes
+
+### 🔍 Document Finder Agent
+The **Document Finder Agent** assists users by locating necessary documents for compliance checks.
+
+**Capabilities:**
+- Retrieves documents from various sources
+- Organizes and prioritizes documents
+- Supports both internal and external document sources
+- Streamlines compliance verification process
+
+---
 ## 📦 Installing the IBM Watsonx Orchestrate ADK
 
 Before installing the ADK, ensure the following software is installed on your system:
@@ -99,42 +128,9 @@ orchestrate env activate EU-New-Agentic
 
 ---
 
-## 📊 Agent Overview
-
-### 🛡️ Compliance Agent
-The **Compliance Agent** helps check whether user-submitted documents meet the company's terms and conditions.
-
-**Key Benefits:**
-- Supports legal and procurement teams
-- Simplifies review of import-related documents
-- Reduces time-consuming and complex manual reviews
-- Speeds up reviews and reduces errors
-- Improves overall efficiency
-
-### 📋 Compliance Planner Agent
-The **Compliance Planner Agent** creates step-by-step plans or checklists based on company policies and compliance guidelines.
-
-**Purpose:**
-- Ensures every required compliance step is accounted for
-- Provides structured approach before document evaluation
-- Maintains consistency across compliance processes
-
-### 🔍 Document Finder Agent
-The **Document Finder Agent** assists users by locating necessary documents for compliance checks.
-
-**Capabilities:**
-- Retrieves documents from various sources
-- Organizes and prioritizes documents
-- Supports both internal and external document sources
-- Streamlines compliance verification process
-
----
-
 ## ⚡ Create Workflow
 
 This section demonstrates how to create flows between agents using workflow tools. You can orchestrate agents to work in **sequence** or **parallel** configurations.
-
----
 
 ## 📥 Import Flow and Agents
 
