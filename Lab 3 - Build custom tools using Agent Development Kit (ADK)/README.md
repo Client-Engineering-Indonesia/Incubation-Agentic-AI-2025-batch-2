@@ -48,7 +48,7 @@ orchestrate --version
 
 ## 🤖 Build Multiple Agents
 
-In this session you will try to deploy collaborator agent from this <a href="https://github.com/IBM/ibm-watsonx-orchestrate-adk/tree/main/examples/flow_builder/collaborator_agents">link</a>
+In this session you will try to deploy collaborator agent from this <a href="https://github.com/IBM/ibm-watsonx-orchestrate-adk/tree/main/examples/flow_builder/get_pet_facts">link</a>
 
 To ensure there is no conflict when you create agent, please use this format for your agents and tools
 
