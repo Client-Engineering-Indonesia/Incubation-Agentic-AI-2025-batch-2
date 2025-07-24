@@ -120,6 +120,11 @@ info:
 
 ...
 
+tools:
+  - get_pet_facts_<YourName>
+
+...
+
 ```
 
 2. Under ```tools/dog-facts.openapi.yaml``` adjust this code using your name.
