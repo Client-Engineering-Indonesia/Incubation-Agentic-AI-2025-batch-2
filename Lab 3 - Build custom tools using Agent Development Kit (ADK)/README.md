@@ -152,4 +152,7 @@ info:
 sh import-all.sh
 ```
 
-5. Go to your enviroment and check if your agent exists in Agent List
+5. Go to your enviroment and check if your agent exists in Agent List. You can test your agent by asking "get facts about cat"
+
+### References:
+https://developer.watson-orchestrate.ibm.com/
