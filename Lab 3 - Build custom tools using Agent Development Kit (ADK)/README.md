@@ -105,6 +105,9 @@ spec_version: v1
 kind: native
 name: pet_agent_<YourName>
 
+tools:
+  - get_pet_facts_<YourName>
+
 ...
 
 ```
@@ -117,11 +120,6 @@ name: pet_agent_<YourName>
 openapi: 3.0.3
 info:
  title: Get Cat Facts <YourName>
-
-...
-
-tools:
-  - get_pet_facts_<YourName>
 
 ...
 
