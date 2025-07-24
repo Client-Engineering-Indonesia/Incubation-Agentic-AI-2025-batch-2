@@ -82,17 +82,17 @@ orchestrate env list
 
 Choose one of the following environments to activate:
 
-#### Option A: First Environment
+#### 1. First Environment
 ```bash
 orchestrate env activate New-Agentic-Incubation
 ```
 
-#### Option B: Second Environment
+#### 2. Second Environment
 ```bash
 orchestrate env activate agentic-inc-3-v2
 ```
 
-#### Option C: Third Environment
+#### 3. Third Environment
 ```bash
 orchestrate env activate EU-New-Agentic
 ```
