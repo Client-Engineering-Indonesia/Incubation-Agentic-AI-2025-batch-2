@@ -50,9 +50,15 @@ orchestrate --version
 
 In this session you will try to deploy collaborator agent from this <a href="https://github.com/IBM/ibm-watsonx-orchestrate-adk/tree/main/examples/flow_builder/get_pet_facts">link</a>
 
-To ensure there is no conflict when you create agent, please use this format for your agents and tools
+### Change Agent Details
+
+under ```agents/pet_agent.yaml``` adjust this code using your name.
 
 ```
-<agent name>_<your name>
-<tool name>_<your name>
+spec_version: v1
+kind: native
+name: pet_agent_<YourName>
+
+...
+
 ```
